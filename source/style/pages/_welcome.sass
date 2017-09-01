@@ -1,0 +1,238 @@
+// =================================
+// Header
+// =================================
+.login-button
+	position: relative
+	background-color: transparent
+	border: 1px solid $white
+	border-radius: 5px
+	color: $white
+	padding: 10px 25px
+	cursor: pointer
+	overflow: hidden
+	text-align: center
+	transition: all $transition-time
+	outline: none
+	&::before
+		content: ''
+		position: absolute
+		width: 0
+		height: 100%
+		top: 0
+		left: 50%
+		transform: translateX(-50%)
+		z-index: -1
+		opacity: 0
+		border-radius: 5px
+		background-color: $white
+		transition: all $transition-time_medium
+	&:hover
+		color: $maincolor
+		&::before
+			width: 110%
+			opacity: .7
+
+
+
+// =================================
+// Flip Card styles
+// =================================
+.flip-card
+	position: relative
+	text-align: center
+	max-width: 380px
+	width: 90%
+	margin: 0 auto
+	opacity: 0
+	perspective: inherit
+	transform-origin: top center
+	transform: rotateX(-40deg) translateY(-20px)
+	transition: all $transition-time_medium
+	&.loaded
+		opacity: 1
+		transform: rotateX(0) translateY(0)
+	&__front-side,
+	&__back-side
+		border-radius: 5px
+		overflow: hidden
+		backface-visibility: hidden
+		transition: all $transition-time_medium
+	&__front-side
+		position: relative
+		z-index: 2
+	&__back-side
+		position: absolute
+		z-index: 1
+		top: 0
+		width: 100%
+		transform: rotateY(-180deg)
+
+.card_flipped
+	.login-button
+		transform: translateY(-200%)
+		opacity: 0
+	.flip-card
+		&__front-side
+			transform: rotateY(180deg)
+		&__back-side
+			transform: rotateY(0)
+
+
+
+// =====================================
+// Author name, description
+// =====================================
+.author-bio
+	padding: 40px
+	background-color: rgba($white_matte, .851)
+	&__name
+		font-size: em(28)
+		color: $text-color
+		line-height: 1
+		margin: 20px auto 10px
+	&__description
+		font-family: "roboto_regular"
+		opacity: .8
+		color: $text-color
+		margin: 5px auto 30px
+		line-height: 1
+
+
+
+
+// TODO: now the top and bottom parts of the form are separated
+
+// =================================
+// Login Form
+// =================================
+.login-form
+	margin: 0
+	padding: 40px 20px 30px
+	background-color: rgba($white_matte, .851)
+	position: relative
+
+	&__plain-text
+		font-family: "roboto_bold"
+		color: $text-color
+
+	&__label
+		cursor: pointer
+		color: $text-color
+		&_text
+			position: relative
+			display: block
+		&_checkbox,
+		&_radio
+			font-family: "roboto_regular"
+		&_radio
+			display: inline-block
+			margin: 0 20px
+
+	.input
+		&_text
+			position: relative
+			display: block
+			width: 100%
+			height: 45px
+			margin: 20px auto
+			padding: 15px 15px 15px 65px
+			border: none
+			border-radius: 5px
+			outline: none
+			& + span
+				position: absolute
+				left: 0
+				top: 0
+				width: 45px
+				height: 100%
+				font-size: em(18)
+				line-height: 45px
+				color: $gray
+				border-bottom-left-radius: 5px
+				border-top-left-radius: 5px
+				background-color: $pastel
+				transition: all $transition-time
+			&::placeholder
+				color: $gray
+
+		&_checkbox,
+		&_radio
+			position: absolute
+			opacity: 0
+			outline: none
+			visibility: hidden
+
+		&_checkbox
+			+ span::before
+				content: "\f00c"
+				color: $maincolor
+				font-family: "FontAwesome"
+				line-height: 20px
+				font-size: em(12)
+				position: relative
+				display: inline-block
+				vertical-align: middle
+				height: 20px
+				width: 20px
+				text-align: center
+				margin-right: 10px
+				border-radius: 3px
+				background-color: $maincolor
+				transition: all $transition-time
+			&:checked + span::before
+				color: $white
+
+		&_radio
+			+ span::before
+				content: ""
+				position: relative
+				display: inline-block
+				vertical-align: middle
+				height: 20px
+				width: 20px
+				text-align: center
+				margin-right: 10px
+				border: 1px solid $gray
+				border-radius: 50%
+				background-color: $white
+				box-shadow: inset 0 0 0 $white
+				transition: all $transition-time
+			&:checked + span::before
+				box-shadow: inset 0 0 0 4px $white
+				background-color: $maincolor
+
+
+
+
+
+// =================================
+// Page Links / Form buttons
+// =================================
+.form-buttons
+	padding: 0
+	margin: 0
+	list-style: none
+	display: table
+	width: 100%
+	position: relative
+	&__button
+		display: table-cell
+		border-right: 1px solid white
+		&:last-child
+			border: none
+		&_even
+			width: 50%
+
+	&__button-content
+			display: block
+			width: 100%
+			padding-top: 10px
+			padding-bottom: 12px
+			color: $white
+			background-color: rgba($maincolor, .8)
+			text-decoration: none
+			transition: all $transition-time
+			&:hover
+				background-color: rgba($maincolor, .6)
+	&__button-content:last-child
+			min-width: 60px;

@@ -1,0 +1,57 @@
+include common/_mixins
+doctype html
+html
+	include common/_head
+	body.table-box
+		include common/_preloader
+
+		<!--[if lt IE 7]>
+		<p class="browsehappy">You are using an <strong>old</strong> browser. Please <a href="http://browsehappy.com/">update it</a></p>
+		<![endif]-->
+
+		+parallax
+		+popup()
+
+		header.header.header_welcome.table-box__top
+			.container.container_padded
+				button.login-button Login
+
+		.table-box__middle
+			.vertical-aligned.perspective-box
+				.flip-card
+					.flip-card__front-side
+						.author-bio
+							+avatar("me.jpg", "Roma Storozhuk")
+							p.author-bio__name Roma Storozhuk
+							p.author-bio__description Frontend devoloper
+
+							+social_links("welcome")
+
+						ul.form-buttons
+							- var pages = {"Works" : "works.html", "About" : "about.html", "Blog" : "blog.html"}
+							each p_url, p_name in pages
+								li.form-buttons__button
+									a(class="preload-link form-buttons__button-content" href=p_url)= p_name
+
+					.flip-card__back-side
+						form#login
+							.login-form
+								h3.sidestripes Autorization
+								+input_iconed([["user", "Login", "text"], ["key", "Password", "password"]])
+								+input_checkers([["checkbox", "robot_check", "not a robot", "I am a human"]])
+								p.login-form__plain-text Are you really not a robot?
+								+input_checkers([["radio", "robot_radio", "shure", "Yes"], ["radio", "robot_radio", "who knows", "No"]])
+
+							ul.form-buttons
+								- var buttons = {"Home page" : "unflip-card", "Login" : "log-me"}
+								each b_action, b_name in buttons
+									li.form-buttons__button.form-buttons__button_even
+										button(class="form-buttons__button-content", id=b_action)= b_name
+
+		footer.footer.footer_welcome.table-box__bottom
+			.container.container_padded
+				span.copyright &copy; Roma Storozhuk
+				span.copyright(class="copyright_slogan") Made at home
+				span.copyright(class="copyright_year") 2016
+
+		include common/_footer-scripts

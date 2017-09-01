@@ -1,0 +1,323 @@
+// =================================
+// Portfolio with works preview
+// =================================
+.portfolio-slider
+	@extend .fullheight, .fullheight_mih
+	background-color: $pastel_dark
+	text-align: center
+	img
+		position: absolute
+		top: 0
+		bottom: 0
+		left: 0
+		right: 0
+		max-width: 90%
+		max-height: 90%
+		margin: auto
+	+media(s)
+		height: auto
+		min-height: auto
+
+	&__module
+		width: 50%
+		+media(s)
+			width: 100%
+			float: none
+	&__projects-container
+		float: left
+	&__preview-container
+		float: right
+	&__navigation-container
+		float: right
+
+	&__projects-container
+		height: 100%
+		background-color: $pastel
+		+media(s)
+			height: 370px
+		+media(xs)
+			height: 270px
+		.portfolio-projects
+			display: block
+			width: 100%
+			height: 100%
+			overflow: hidden
+			position: relative
+			.project
+				background-color: $pastel
+				position: absolute
+				padding: 10% 16%
+				width: 100%
+				height: 100%
+				display: table
+				opacity: 0
+				visibility: hidden
+				transition: opacity $transition-time_medium
+				+media(m)
+					padding: 5% 10%
+				&.active
+					visibility: visible
+					opacity: 1
+				&__inner
+					display: table-cell
+					vertical-align: middle
+				&__tech,
+				&__link
+					font-family: "roboto_medium"
+					font-size: em(16)
+					line-height: 1
+					+media(xs)
+						font-size: em(14)
+				&__title
+					margin: 0 20px
+				&__tech
+					text-transform: uppercase
+					color: $maincolor
+					border-top: 1px solid $maincolor
+					border-bottom: 1px solid $maincolor
+					padding: 20px 15px
+					margin: 40px auto
+					+media(xs)
+						padding: 10px 10px 12px
+						margin: 20px auto
+				&__link
+					text-decoration: none
+					display: inline-block
+					color: $white
+					padding: 15px
+					background-color: $maincolor
+					border-radius: 5px
+					transition: background-color $transition-time
+					&::before
+						content: "\f0c1"
+						vertical-align: middle
+						position: relative
+						font-family: "FontAwesome"
+						font-size: em(20)
+						margin-right: 8px
+					&:hover
+						background-color: darken($maincolor, 10%)
+				.word,
+				.letter
+					font-size: inherit
+					line-height: inherit
+					vertical-align: middle
+					display: inline-block
+				.letter
+					opacity: 0
+					will-change: transform
+					&.show
+						animation: showLetter $transition-time_medium
+						animation-fill-mode: forwards
+
+
+	&__preview-container
+		height: 70%
+		overflow: hidden
+		position: relative
+		+media(s)
+			height: 400px
+		+media(xs)
+			height: 170px
+		.portfolio-preview
+			opacity: 0
+			will-change: opacity
+			transition: opacity $transition-time_medium
+			&.active
+				opacity: 1
+				transition: opacity $transition-time_medium
+				// transition-delay: $transition-time
+
+	&__navigation-container
+		height: 30%
+		+media(s)
+			height: 150px
+		+media(xs)
+			height: 100px
+		.portfolio-button
+			position: absolute
+			top: 0
+			left: 0
+			width: 100%
+			height: 100%
+			z-index: 1
+			transition: all $transition-time
+			.fa
+				position: relative
+				top: 0
+				font-size: em(36)
+				color: $white
+				transition: all $transition-time
+			&:hover
+				.fa
+					transform: scale3d(1.2,1.2,1)
+			&_prev
+				background-color: rgba($thumb-overlay-color_prev, .5)
+				&:hover
+					background-color: rgba($thumb-overlay-color_prev, .7)
+			&_next
+				background-color: rgba($thumb-overlay-color_next, .5)
+				&:hover
+					background-color: rgba($thumb-overlay-color_next, .7)
+
+		.navigation-box
+			width: 50%
+			height: 100%
+			position: relative
+			float: left
+			.portfolio-thumbnails
+				position: relative
+				height: 100%
+				overflow: hidden
+				&__thumbnail
+					height: 100%
+					width: 100%
+					position: absolute
+					visibility: hidden
+					will-change: transform
+					transform: translate3d(0,0,0)
+					&.move-up
+						animation: hideThumbUp $transition-time_medium
+					&.move-down
+						animation: hideThumbDown $transition-time_medium
+					&.active
+						visibility: visible
+						transform: translate3d(0,0,0)
+						&.move-up
+							animation: showThumbUp $transition-time_medium
+						&.move-down
+							animation: showThumbDown $transition-time_medium
+
+
+
+
+// =================================
+// Testimonials section
+// =================================
+.talks
+	background-color: $white
+	text-align: center
+	&__wrapper
+		width: 66.66666666666667%
+		max-width: 960px
+		margin: 0 auto
+		+media(m)
+			width: 80%
+		+media(s)
+			width: 90%
+		.testimonial
+			float: left
+			text-align: left
+			width: 50%
+			font-size: em(16)
+			padding: 0 10px 20px
+			+media(l)
+				font-size: em(14)
+			+media(xs)
+				float: none
+				text-align: left
+				width: 90%
+			&__text
+				min-height: 128px
+				font-family: "roboto_regular"
+				color: $text-color
+				margin: 0 0 25px
+				+media(xs)
+					margin: 0 0 15px
+				&::before
+					content: "\f10d"
+					font-family: "FontAwesome"
+					font-size: em(36,16)
+					position: relative
+					display: block
+					opacity: .2
+					margin-bottom: 30px
+					+media(xs)
+						text-align: center
+						margin-bottom: 20px
+			&__author
+				width: 100%
+				.avatar
+					width: 87px
+					height: 87px
+					max-width: 30%
+					display: inline-block
+					vertical-align: middle
+					+media(l)
+						width: 60px
+						height: 60px
+					+media(xs)
+						width: 49px
+						height: 49px
+				.author
+					max-width: 65%
+					padding-left: 2%
+					color: $maincolor
+					display: inline-block
+					vertical-align: middle
+					&__name,
+					&__description
+						margin: 0
+					&__name
+						font-family: "roboto_bold"
+					&__description
+						font-family: "roboto_regular"
+
+
+
+
+
+// =================================
+// Contact form
+// =================================
+.contact-form
+	display: block
+	margin: 70px auto 0
+	width: 380px
+	max-width: 90%
+	border-radius: 5px
+	overflow: hidden
+	text-align: center
+	position: relative
+	&__content
+		position: relative
+		padding: 0 20px
+		background: transparent
+	&__heading
+		margin: 30px 0 0
+	&__field
+		border-radius: 5px
+		display: block
+		margin: 20px auto
+		padding: 15px
+		border: 0
+		width: 100%
+		background-color: $white
+		&_textarea
+			height: 140px
+			resize: none
+		&::placeholder
+			font-family: "roboto_regular"
+			font-size: em(16)
+			line-height: 1
+			opacity: .5
+
+
+
+// =================================
+// Testimonials and form blur
+// =================================
+.talks, .contact-form__bg
+	background: url("/assets/img/theme_mountains/about-bg_big.png") $white
+	background-repeat: no-repeat
+	background-size: 2000px
+	background-position: center top
+
+.contact-form__bg
+	position: absolute
+	top: 0
+	right: 0
+	bottom: 0
+	left: 0
+	z-index: 0
+	filter: blur(5px)

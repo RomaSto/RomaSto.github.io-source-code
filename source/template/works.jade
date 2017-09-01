@@ -1,0 +1,123 @@
+include common/_mixins
+doctype html
+html
+	include common/_head
+	body
+		include common/_preloader
+
+		<!--[if lt IE 7]>
+		<p class="browsehappy">You are using an <strong>old</strong> browser. Please <a href="http://browsehappy.com/">update it</a></p>
+		<![endif]-->
+
+		include common/_sprites
+
+		+parallax("vertical")
+		+main-menu(1)
+		+popup()
+
+		header.header.table-box.fullheight.fullheight_mih
+			.table-box__top
+				+header-top
+			.table-box__middle
+				.vertical-aligned
+					.site-author
+						+avatar("me.jpg", "frontend developer", "Roma Storozhuk")
+						p.site-author__name Roma Storozhuk
+						p.site-author__description Frontend developer
+
+					svg.header__svg-bg
+						use(xlink:href="#icon-portfolio_header")
+					button.go-down.fa.fa-chevron-down(data-link=".portfolio-slider")
+
+					svg(preserveAspectRatio="none" viewBox="0 0 2000 400").header__svg-corner
+						use(xlink:href="#icon-bg")
+			.table-box__bottom
+				.header__title
+					+svg-heading("Works", "icon-works_header")
+
+
+		section.portfolio-slider
+			.portfolio-slider__module.portfolio-slider__preview-container
+				img.portfolio-preview.active(src="/assets/img/works/first.png")
+				img.portfolio-preview(src="/assets/img/works/second.png")
+				img.portfolio-preview(src="/assets/img/works/third.png")
+
+			.portfolio-slider__module.portfolio-slider__projects-container
+				.portfolio-projects
+					.project.active
+						.project__inner
+							h3.sidestripes.project__title First
+							p.project__tech Java-Script, Sass, Jquery
+							a(href="http://google.com/", target="_blank").project__link Check it out
+					.project
+						.project__inner
+							h3.sidestripes.project__title Second
+							p.project__tech Java-Script, Sass, Jquery
+							a(href="http://google.com/", target="_blank").project__link Check it out
+					.project
+						.project__inner
+							h3.sidestripes.project__title Third
+							p.project__tech Java-Script, Sass, Jquery
+							a(href="http://google.com/", target="_blank").project__link Check it out
+
+			.portfolio-slider__module.portfolio-slider__navigation-container
+				.navigation-box.navigation-box_prev
+					button.portfolio-button.portfolio-button_prev
+						.fa.fa-chevron-down
+					.portfolio-thumbnails
+						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/first.png", alt="First")
+						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/second.png", alt="Second")
+						.portfolio-thumbnails__thumbnail.active
+							img(src="/assets/img/works/third.png", alt="Third")
+				.navigation-box.navigation-box_next
+					button.portfolio-button.portfolio-button_next
+						.fa.fa-chevron-up
+					.portfolio-thumbnails
+						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/first.png", alt="First")
+						.portfolio-thumbnails__thumbnail.active
+							img(src="/assets/img/works/second.png", alt="Second")
+						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/third.png", alt="Third")
+
+
+
+		section.talks.clearfix.last-section
+			+svg-heading("Feedback", "icon-about_header", h2)
+			.talks__wrapper.clearfix
+				.testimonial
+					blockquote.testimonial__text Lorem ipsum dolor sit amet, modo rebum in vix. Duo cu melius accusam omittam. Ad has novum iusto similique, molestie repudiare voluptatibus nec at.
+					.testimonial__author.author
+						+avatar("dima.png", "Lorem Title", "Lorem Title")
+						.author
+							p.author__name Lorem Title
+							p.author__description 
+
+				.testimonial
+					blockquote.testimonial__text Lorem ipsum dolor sit amet, modo rebum in vix. Duo cu melius accusam omittam. Ad has novum iusto similique, molestie repudiare voluptatibus nec at.
+					.testimonial__author
+						+avatar("zar.png", "Lorem Title", "Lorem Title")
+						.author
+							p.author__name Lorem Title
+							p.author__description 
+
+			.contact-form
+				form#contact
+					.contact-form__bg
+					.contact-form__content
+						h3.contact-form__heading.sidestripes Contact me
+						input.contact-form__field(type="text" name="name" placeholder="Name" id="formfield_name")
+						input.contact-form__field(type="text" name="email" placeholder="Email" id="formfield_email")
+						textarea.contact-form__field.contact-form__field_textarea(name="message" placeholder="Message" id="formfield_text")
+						
+					ul.form-buttons
+						- var buttons = {"Send" : "form-submit", "Clear" : "form-clear"}
+						- var buttons_type = ["submit", "reset"];
+						- var val = 0;
+						each b_action, b_name in buttons
+							li.form-buttons__button.form-buttons__button_even
+								button(class="form-buttons__button-content", id=b_action, type=buttons_type[val++])= b_name
+
+		include common/_footer

@@ -1,0 +1,67 @@
+include common/_mixins
+doctype html
+html
+	include common/_head
+	body
+		include common/_preloader
+
+		<!--[if lt IE 7]>
+		<p class="browsehappy">You are using an <strong>old</strong> browser. Please <a href="http://browsehappy.com/">update it</a></p>
+		<![endif]-->
+
+		include common/_sprites
+
+		+parallax("vertical")
+		+main-menu(2)
+
+		header.header.table-box.fullheight.fullheight_mih
+			.table-box__top
+				+header-top
+			.table-box__middle
+				.vertical-aligned
+					.site-author.site-author_blog
+						+avatar("me.jpg", "Frontend developer", "Roma Storozhuk")
+						+svg-heading("Blog", "icon-blog_header")
+						p.site-author__description Articles that I wrote
+
+
+					button.go-down.fa.fa-chevron-down(data-link=".blog")
+
+					svg(preserveAspectRatio="none" viewBox="0 0 1000 400").header__svg-corner.header__svg-corner_left.header__svg-corner_blog
+						use(xlink:href="#icon-about_bg_left")
+					svg(preserveAspectRatio="none" viewBox="0 0 1000 400").header__svg-corner.header__svg-corner_right.header__svg-corner_blog
+						use(xlink:href="#icon-about_bg_right")
+
+
+		.blog.last-section
+			aside.blog-navigation
+				button.blog-navigation__toggle
+				nav.blog-navigation__wrapper
+					ul.blog-navigation__links-list
+						li.links-list__item
+							a.links-list__link.active(href="#google") Lorem ipsum dolor sit amet
+						li.links-list__item
+							a.links-list__link(href="#alph") Lorem ipsum
+
+			section.blog-content
+				.article#google
+					h3.article__title Lorem ipsum dolor sit amet
+					p.article__date March 20 at 04:31
+					.article__content.
+						<p>Lorem ipsum dolor sit amet, viderer concludaturque ad mel. Quodsi efficiendi vim te, delectus consectetuer ex vel, mel velit tractatos et. Has graece noluisse ne, pro ne nemore cotidieque. Choro dicant te vis, novum audire patrioque pro et.
+						At percipit verterem nam. Tantas epicuri reformidans at usu, audire eripuit dignissim no sit. In tale integre usu. In quaestio sadipscing sit, detracto repudiare ut ius. Ei eos liber qualisque, eam delectus delicatissimi an.
+						Eam no scaevola referrentur. Saepe deterruisset ius ut. Sed sonet elitr appellantur at. Ei feugait detraxit nominati sed, quidam deleniti consulatu ut vis.
+						Diceret suscipiantur qui ut. Vis ne zril perfecto signiferumque. Eu malorum nonumes vel, eos ei solet aliquid repudiandae. At utroque appareat ius, ei wisi errem est. Natum convenire et eum, his oratio aperiri apeirian eu. Eum atqui eruditi electram an, legere viderer has in.
+						Eos erant labitur commune ne. Ne vivendum inimicus expetendis mei, dolore eloquentiam pro ad, mel porro oratio vivendo ea. No eos utroque expetenda. Summo aliquam laboramus est ad.</p>
+
+				.article#alph
+					h3.article__title Lorem ipsum
+					p.article__date March 20 at 04:31
+					.article__content.
+						Lorem ipsum dolor sit amet, viderer concludaturque ad mel. Quodsi efficiendi vim te, delectus consectetuer ex vel, mel velit tractatos et. Has graece noluisse ne, pro ne nemore cotidieque. Choro dicant te vis, novum audire patrioque pro et.
+						At percipit verterem nam. Tantas epicuri reformidans at usu, audire eripuit dignissim no sit. In tale integre usu. In quaestio sadipscing sit, detracto repudiare ut ius. Ei eos liber qualisque, eam delectus delicatissimi an.
+						Eam no scaevola referrentur. Saepe deterruisset ius ut. Sed sonet elitr appellantur at. Ei feugait detraxit nominati sed, quidam deleniti consulatu ut vis.
+						Diceret suscipiantur qui ut. Vis ne zril perfecto signiferumque. Eu malorum nonumes vel, eos ei solet aliquid repudiandae. At utroque appareat ius, ei wisi errem est. Natum convenire et eum, his oratio aperiri apeirian eu. Eum atqui eruditi electram an, legere viderer has in.
+						Eos erant labitur commune ne. Ne vivendum inimicus expetendis mei, dolore eloquentiam pro ad, mel porro oratio vivendo ea. No eos utroque expetenda. Summo aliquam laboramus est ad.</p>
+						
+		include common/_footer

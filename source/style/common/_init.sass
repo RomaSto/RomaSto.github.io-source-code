@@ -1,0 +1,464 @@
+// =================================
+// Chris Coyier border-box reset
+// =================================
+html
+	box-sizing: border-box
+
+*, *:before, *:after
+	box-sizing: inherit
+
+
+
+
+
+// =================================
+// Clearfix
+// =================================
+.clearfix
+	&::before,
+	&::after
+		content: ""
+		display: table
+	&::after
+		clear: both
+
+
+
+
+
+// =================================
+// Page init
+// =================================
+html,
+body
+	height: 100%
+	min-width: 320px
+	position: relative
+	font-size: 100%
+	font-family: "Roboto_medium", sans-serif
+	transition: all $transition-time
+
+
+// Show scrollbar on every page
+html
+	overflow-y: scroll
+
+
+// TODO: maybe try to use only as silent class: e.g. %vertical-aligned
+.vertical-aligned
+	display: table-cell
+	vertical-align: middle
+	position: relative
+
+
+// Last section on the page
+.last-section
+	padding-bottom: $footer-height
+	margin-bottom: -$footer-height
+	+media(s)
+		padding-bottom: $footer-height_small
+		margin-bottom: -$footer-height_small
+	+media(xs)
+		padding-bottom: $footer-height_xsmall
+		margin-bottom: -$footer-height_xsmall
+
+
+// TODO: same as .vertical-aligned - maybe use only as @extend
+.fullheight
+	height: 100%
+
+	// calculating pusher height for footer
+	&.last-section
+		height: calc(100% + #{$footer_height - 190})
+		+media(s)
+			height: calc(100% + #{$footer-height_small - 190})
+		+media(xs)
+			height: calc(100% + #{$footer-height_xsmall - 190})
+
+	&_mih
+		min-height: 650px
+		overflow: hidden
+		&.last-section
+			min-height: calc(650px + #{$footer_height - 190})
+			+media(s)
+				min-height: calc(650px + #{$footer-height_small - 190})
+			+media(xs)
+				min-height: calc(650px + #{$footer-height_xsmall - 190})
+
+
+// TODO: used once on main page
+.perspective-box
+	perspective: 1000px
+
+
+#preloader
+	// display: none
+	position: fixed
+	width: 100%
+	height: 100%
+	left: 0
+	top: 0
+	z-index: 99999
+	background-color: $maincolor
+	text-align: center
+	background-image: url("/assets/img/theme_mountains/preloader_bg.jpg")
+	background-position: center center
+	background-size: cover
+	&__progress
+		position: absolute
+		top: 0
+		right: 0
+		bottom: 0
+		left: 0
+		width: 144px
+		height: 144px
+		margin: auto
+		z-index: 999999
+	#preloader-svg
+		&__percentage
+			position: absolute
+			top: 50%
+			left: 50%
+			transform: translate(-50%,-50%)
+			color: $white
+			font-size: em(24)
+			opacity: 0
+			transition: opacity $transition-time_medium
+		&__img
+			.bar
+				transition: all .5s
+				&__center
+					// transition-delay: .1s
+				&__inner
+					// transition-delay: .1s
+
+
+// TODO: need add modernizr.js
+.no-js
+	.preloader
+		display: none
+
+
+.container
+	max-width: 1800px
+	margin: 0 auto
+	&_padded
+		padding: 25px 20px
+	&_fullwidth
+		max-width: none
+
+
+.sprites-container
+	display: none
+
+
+
+
+
+// =================================
+// Table Layout Modifiers
+// =================================
+.table-box
+	display: table
+	width: 100%
+	&__top,
+	&__middle,
+	&__bottom
+		display: table-row
+	&__middle
+		height: 100%
+
+
+
+
+
+// =================================
+// Typography
+// =================================
+
+h1, h2, h3, h4, h5, h6
+	font-family: "bernier_regular", sans-serif
+	color: $text-color
+	line-height: 1
+	font-weight: normal
+	margin: 0
+	text-align: center
+	position: relative
+
+h1, h2
+	font-size: em(63,16)
+	+media(m)
+		font-size: em(49,16)
+	+media(xs)
+		font-size: em(35,16)
+
+h3
+	font-size: em(35,16)
+	+media(m)
+		font-size: em(30,16)
+	+media(xs)
+		font-size: em(21,16)
+
+h4, h5, h6
+	font-size: em(26,16)
+	+media(m)
+		font-size: em(24,16)
+	+media(xs)
+		font-size: em(21,16)
+
+
+.sidestripes
+	padding: 0 42px
+	display: inline-block
+	&::before,
+	&::after
+		color: $stripes-color
+		content: ""
+		position: absolute
+		top: .5em
+		margin-top: -2.5px
+		height: 5px
+		width: 22px
+		display: inline-block
+		vertical-align: middle
+		background-color: $gray_light
+		opacity: .8
+	&::before
+		left: 0
+	&::after
+		right: 0
+
+
+.svg-heading
+	position: relative
+	display: block
+	padding: 65px 15px
+	text-align: center
+	&__text
+		position: relative
+		width: 380px
+		z-index: 3
+		+media(m)
+			width: auto
+	&__img
+		position: absolute
+		fill: invert($white)
+		z-index: 0
+		top: 50%
+		left: 50%
+		width: 100%
+		height: auto
+		transform: translate(-50%,-55%)
+		opacity: .07
+
+
+
+
+
+
+// =================================
+// Elements
+// =================================
+img
+	max-width: 100%
+
+button
+	border: none
+	outline: none
+	background: none
+	cursor: pointer
+
+// Chevron buttons
+.go-down,
+.go-up
+	color: $white
+	font-size: em(36)
+	opacity: .7
+	transition: all $transition-time
+	&:hover
+		opacity: 1
+
+.go-down
+	position: absolute
+	z-index: 1
+	bottom: 40px
+	left: 50%
+	transform: translateX(-50%)
+	&:hover
+		padding-top: 10px
+		bottom: 30px
+
+.go-up
+	display: block
+	position: relative
+	margin: 70px auto
+	width: 50px
+	height: 50px
+	font-size: em(40)
+	text-shadow: 0 0 10px rgba(invert($white), .5)
+
+
+.avatar
+	margin: 0 auto
+	width: 137px
+	height: 137px
+	border-radius: 50%
+	overflow: hidden
+	img
+		width: 100%
+		display: block
+
+
+.social-links
+	position: relative
+	margin: 0
+	padding: 0
+	list-style: none
+	z-index: 5
+	&__item
+		display: inline-block
+		margin: 0 12px
+		text-align: center
+		&:first-child
+			margin-left: 0
+		&:last-child
+			margin-right: 0
+		&_welcome
+			.social-links__link
+				color: $maincolor
+		&_circle
+			margin: 0 5px
+			.social-links__link
+				border: 2px solid $white
+				border-radius: 50%
+				font-size: em(18)
+				line-height: 34px
+				width: 38px
+				height: 38px
+				&:hover
+					background-color: $white
+					&::before
+						color: $text-color
+		&_svg
+			margin: 0 5px
+
+	&__link
+		color: $white
+		text-decoration: none
+		font-size: em(28,16)
+		line-height: 1
+		opacity: .5
+		transition: opacity $transition-time
+		&:hover
+			will-change: opacity
+			opacity: 1
+
+	&__svg-link
+		text-decoration: none
+		svg
+			width: 38px
+			height: 38px
+			border-radius: 50%
+			box-shadow: inset 0 0 0 1px $white
+			overflow: hidden
+		.mask__path
+			transition: all $transition-time
+		.mask__rect_inner,
+		.mask__rect_outer
+			fill: $white
+			transition: all $transition-time
+		&:hover
+			.mask__path
+				fill: $white
+			.mask__rect_inner
+				fill: transparent
+
+
+
+
+
+// =================================
+// Mountains positioning
+// =================================
+.parallax-wrapper
+	position: fixed
+	overflow: hidden
+	display: block
+	width: 100%
+	height: 100%
+	top: 0
+	left: 0
+	min-height: 650px
+	z-index: -1
+	transform: translateZ(0)
+#scene, .layer
+	display: block
+	height: 100%
+	width: 100%
+	padding: 0
+	margin: 0
+	list-style: none
+	transform: translateZ(0)
+#scene
+	position: relative
+	overflow: hidden
+.layer
+	position: absolute
+	.layer-bg
+		transform: translate3d(0,0,0)
+		// transform-style: preserve-3d
+		backface-visibility: hidden
+		position: absolute
+		width: 140%
+		height: 120%
+		left: -20%
+		top: -10%
+		background-repeat: no-repeat
+		background-size: cover
+		background-position: center 40%
+
+	@for $i from 0 to 10
+		.layer-bg_#{$i}
+			background-image: url("/assets/img/theme_mountains/parallax/layer_#{$i}.png")
+
+
+
+// =================================
+// Mountains positioning
+// =================================
+.b-container
+	width: 200px
+    height: 150px
+    background-color: #ccc
+    margin: 0px auto
+    padding: 10px
+    font-size: 30px
+    color: #fff
+	transition: all $transition-time
+
+.b-popup
+	width: 100%
+	height: 2000px
+	background-color: rgba(0,0,0,0.5)
+	overflow: hidden
+	position: fixed
+    top: 0px
+	z-index: 9999
+
+.b-popup .b-popup-content
+    margin: 14% auto 0px auto
+    width: 400px
+    height: 200px
+    padding: 10px
+    background-color: white;
+    border-radius: 5px
+    box-shadow: 0px 0px 10px #000
+
+.popup-text
+	font-size: 2rem
+	text-align: center
+	margin-top: 18%
+
+.popup-button
+	float: right
+	cursor: pointer

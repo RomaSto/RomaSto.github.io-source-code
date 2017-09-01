@@ -1,0 +1,15 @@
+{
+	"globals": {
+		"require": true
+	},
+	"env": {
+		"browser": true,
+		"jquery" :true
+	},
+	"extends": "eslint:recommended",
+	"rules": {
+		"indent": [2, "tab"],
+		"quotes": [2, "double"],
+		"semi": [2, "always"]
+	}
+}

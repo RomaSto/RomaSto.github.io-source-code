@@ -1,0 +1,105 @@
+//- Lorem ipsum mixin
+mixin lorem(n)
+	- var words_num = n || 10
+	- var tpl = "Donec sed velit neque. Fusce suscipit vel lorem id fermentum. Vivamus ex massa, suscipit a mi nec, dapibus facilisis mi. Integer cursus mi orci, et auctor dui interdum nec. Pellentesque ipsum nisl, aliquam at molestie eu, varius eu urna. Quisque sed metus auctor, malesuada tortor ut, hendrerit enim. Vestibulum gravida arcu vitae est pretium, vel accumsan sapien iaculis. Vestibulum commodo hendrerit dolor ut malesuada. Duis non pellentesque velit, eu vulputate est. Quisque aliquet congue leo at molestie. Nunc ac risus tellus. Cras urna purus, suscipit non pharetra vel, facilisis ut sapien. Etiam mattis est at arcu venenatis laoreet. Nulla accumsan massa libero, in efficitur purus vulputate vitae."
+
+	- var words = tpl.split(/\s+/,words_num)
+	span=words.join(" ")
+
+
+
+//- Parallax widget
+mixin parallax(type)
+	- var p_type = type || "axis"
+	.parallax-wrapper
+		ul#scene(class=p_type)
+			- for (var n = 0; n < 10; n++)
+				li.layer(data-depth=(0.1*n))
+					div(class = "layer-bg layer-bg_" + n)
+
+
+
+//- Rounded avatar widget
+mixin avatar(img, title, alt)
+	.avatar
+		img(src="/assets/img/"+img, title=title, alt=alt)
+
+
+
+//- Social profiles
+//- style - BEM modidifier
+mixin social_links(style)
+	ul.social-links
+		- var socials = {"facebook" : "https://www.facebook.com/roman.storozhuk.395", "github-alt" : "https://github.com/RomaSto", "linkedin" : "#"}
+		each s_url, s_name in socials
+			li(class="social-links__item" + ((style) ? " social-links__item_#{style}" : ""))
+				a(class="social-links__link fa fa-" + s_name, href=s_url, target="_blank")
+
+
+
+//- Text/Password inputs with Font Awesome icons
+//- elements = [[FontAwesome-class, input-placeholder, input-type], [...]]
+mixin input_iconed(elements)
+	each params in elements
+		label(class="login-form__label login-form__label_text")
+			input(class="input input_text", placeholder=params[1], type=params[2], id=params[2])
+			span(class="fa fa-" + params[0])
+
+
+
+//- Checkbox or Radio inputs with style
+//- elements = [[type, name, value, text], [...]]
+mixin input_checkers(elements)
+	each params in elements
+		label(class="login-form__label login-form__label_" + params[0])
+			input(class="input input_#{params[0]}", type=params[0], name=params[1], value=params[2])
+			span=params[3]
+
+
+
+//- Fullscreen Menu widget
+mixin main-menu(active)
+	- var pages = {"My works":"works.html", "Blog":"blog.html", "About me":"about.html", "Login":"/"}
+	nav.main-menu
+		ul.main-menu__content
+			- var i = 1
+			each p_url, p_title in pages
+				li.main-menu__item
+					a(class="preload-link main-menu__link" + ((i++ == active) ? " active":""), href=p_url)=p_title
+
+
+
+//- Header top row with socials and menu button
+mixin header-top
+	.header__top-row
+		+social_links
+		button.menu-button#menu-toggle
+			.menu-button__line
+
+
+
+//- Heading with SVG
+mixin svg-heading(heading_text, svg_id, heading_type)
+	- var h_type = heading_type || "h1"
+	.svg-heading
+		#{h_type}.svg-heading__text.sidestripes= heading_text
+		svg.svg-heading__img: use(xlink:href="#"+svg_id)
+
+//- PopUP Windows
+mixin popup()
+	.b-container
+	.b-popup(id="popup1")
+		.b-popup-content
+			//- button.popup-button X
+			i(class="fa fa-times popup-button")
+			p.popup-text Fill in all the fields !
+			
+
+
+//- Skills Pie Charts
+mixin pie_chart(skill, percentage)
+	.group__item
+		.item-title=skill
+		svg(class="piechart" viewBox="0 0 120 120")
+			circle(class="piechart__bg" fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)")
+			circle(class="piechart__fill", data-percentage=((100-percentage)/100)*314.159265, fill="none", stroke-width="20", stroke-dasharray="314.159265", stroke-dashoffset="314.159265", cx="60", cy="60", r="50", transform="rotate(-90, 60, 60)")

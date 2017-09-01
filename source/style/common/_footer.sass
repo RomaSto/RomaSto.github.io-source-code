@@ -1,0 +1,96 @@
+// =================================
+// Footer
+// =================================
+.footer
+	position: relative
+	&_welcome
+		text-align: center
+
+	&__wrapper
+		background-color: rgba($stripes-color, .85)
+		height: ($footer-height - 190px)	// 190px == "go-up" button margin+height
+		color: $white
+		text-align: center
+		+media(s)
+			height: ($footer-height_small - 190px)
+		+media(xs)
+			height: ($footer-height_xsmall - 190px)
+	&__row
+		border-bottom: 1px solid rgba($white, .1)
+		padding: 30px
+		@extend .clearfix
+		&:last-child
+			border: none
+	&__column
+		float: left
+		width: 50%
+		+media(s)
+			margin-bottom: 20px
+			float: none
+			width: 100%
+			text-align: center !important
+			&:last-child
+				margin-bottom: 0
+		&_left
+			text-align: left
+			padding-right: 10px
+		&_right
+			text-align: right
+			padding-left: 10px
+
+	&__link
+		position: relative
+		color: $white
+		text-decoration: none
+		margin: 0 20px
+		padding: 10px 0
+		vertical-align: middle
+		display: inline-block
+		+media(m)
+			margin: 0 10px
+			font-size: em(14)
+		&:first-child
+			margin-left: 0
+		&:last-child
+			margin-right: 0
+		&::after
+			content: ""
+			position: absolute
+			bottom: 0
+			left: 50%
+			transform: translateX(-50%)
+			display: block
+			height: 2px
+			background-color: $white
+			opacity: 0
+			width: 0
+			transition: all $transition-time
+		&:hover
+			&::after
+				opacity: 1
+				width: 100%
+
+	&__quote
+		opacity: .5
+		font-family: "roboto_light"
+
+	.copyright
+		font-family: "Roboto_light"
+		opacity: .8
+		color: $white
+		&_slogan
+			&::before,
+			&::after
+				content: "|"
+				position: relative
+				margin: 0 5px
+		+media(xs)
+			&:first-child
+				display: block
+			&_slogan
+				&::before
+					display: none
+
+	&_common
+		.copyright
+			opacity: .5

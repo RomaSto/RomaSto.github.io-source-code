@@ -1,0 +1,88 @@
+// =================================
+// Mixins
+// =================================
+=media($screen)
+	$screen_sizes: (l: 1200px, m: 992px, s: 768px, xs: 480px, xxs: 320px)
+	@media only screen and (max-width : #{map-get($screen_sizes, $screen)})
+		@content
+
+// =================================
+// Colors
+// =================================
+// $maincolor: #08b09d
+$maincolor: #00bfa5
+$stripes-color: #373e42
+$text-color: #455a64
+
+$thumb-overlay-color_prev: #b6b4ae
+$thumb-overlay-color_next: #888372
+
+
+$white: #fff
+$white_matte: #fcfcfc
+$row-color: #f1f1f2
+
+$pastel: #f0efe9
+$pastel_dark: #efebe0
+$pastel_light: #faf8f0
+
+$gray: #c4cbcd
+$gray_light: #d0d2d2
+
+
+// =================================
+// Timings
+// =================================
+$transition-time: .3s
+$transition-time_fast: .2s
+$transition-time_medium: .7s
+$transition-time_slow: 1.5s
+
+
+
+// =================================
+// Measurement
+// =================================
+$footer-height: 450px
+$footer-height_small: 600px
+$footer-height_xsmall: 700px
+
+
+
+// =================================
+// Animations
+// =================================
+@keyframes hideThumbUp
+	0%
+		visibility: visible
+	100%
+		transform: translate3d(0,-100%,0)
+		visibility: visible
+
+@keyframes showThumbUp
+	0%
+		transform: translate3d(0,100%,0)
+	100%
+		transform: translate3d(0,0,0)
+
+@keyframes hideThumbDown
+	0%
+		visibility: visible
+	100%
+		transform: translate3d(0,100%,0)
+		visibility: visible
+
+@keyframes showThumbDown
+	0%
+		transform: translate3d(0,-100%,0)
+	100%
+		transform: translate3d(0,0,0)
+
+@keyframes showLetter
+	0%
+		opacity: 0
+		transform: perspective(750px) translate3d(0,0,600px) scale3d(0.7,0.7,1)
+		// transform: translate3d(0,-100%,0) scale3d(0.7,0.7,1)
+	100%
+		opacity: 1
+		transform: perspective(750px) translate3d(0,0,0) scale3d(1,1,1)

@@ -1,0 +1,91 @@
+include common/_mixins
+doctype html
+html
+	include common/_head
+	body
+		include common/_preloader
+
+		<!--[if lt IE 7]>
+		<p class="browsehappy">You are using an <strong>old</strong> browser. Please <a href="http://browsehappy.com/">update it</a></p>
+		<![endif]-->
+		include common/_gmap
+		include common/_sprites
+		
+
+		+parallax("vertical")
+		+main-menu(3)
+
+		header.header.table-box.fullheight.fullheight_mih
+			.table-box__top
+				+header-top
+			.table-box__middle
+				.vertical-aligned
+					.site-author
+						+avatar("me.jpg", "Frontend developer", "Roma Storozhuk")
+						p.site-author__name Roma Storozhuk
+						p.site-author__description Frontend developer
+
+					svg.header__svg-bg
+						use(xlink:href="#icon-portfolio_header")
+					button.go-down.fa.fa-chevron-down(data-link=".about-me")
+
+					svg(preserveAspectRatio="none" viewBox="0 0 1000 400").header__svg-corner.header__svg-corner_left
+						use(xlink:href="#icon-about_bg_left")
+					svg(preserveAspectRatio="none" viewBox="0 0 1000 400").header__svg-corner.header__svg-corner_right
+						use(xlink:href="#icon-about_bg_right")
+
+
+
+		section.about-me
+			.about-me__stretcher.about-me__stretcher_dark
+				.about-me__stretcher.about-me__stretcher_light
+					.about-me__bio.bio
+						+svg-heading("About", "icon-about_header")
+						.bio__main-image
+							img(src="/assets/img/me.jpg", alt="Roma Storozhuk", title="My example site")
+						h3.bio__heading.sidestripes About
+						.bio__about
+							p.
+								I am a developer. I am 23 years old. I am developing a modern websites and applications. I like to work on interesting and modern projects.
+
+					.about-me__skills.skills
+						h3.skills__heading.sidestripes Technology stack
+						.skills__descr
+						
+
+						.skills__group
+							.group__title Frontend
+							+pie_chart("Java-Script",90)
+							+pie_chart("Sass",85)
+							+pie_chart("Jade",75)
+							+pie_chart("jQuery",70)
+							+pie_chart("React",40)
+							+pie_chart("React Native",40)
+							+pie_chart("Angular 2",15)
+						.skills__group
+							.group__title Backend
+							+pie_chart("NodeJS",30)
+							+pie_chart("Python",5)
+						.skills__group
+							.group__title Workflow
+							+pie_chart("Gulp",90)
+							+pie_chart("Git",90)
+							+pie_chart("Bower",50)
+
+
+
+		section.contacts.last-section.fullheight.fullheight_mih
+			.contacts__map
+				#map_wrapper
+			.contacts__info
+				.contacts__heading
+					h3.sidestripes Contacts
+				ul.contacts__links
+					- var contact_item = { 'skype' : 'rom4ik5385', 'envelope': 'romastoroschuk@gmail.com', 'phone': '+380676651565', 'map-marker' : 'Kamyanets-Podilsky' };
+					each type, link_a in contact_item
+						li.link-wrapper
+							a.link(href="#")
+								i(class= "fa fa-" + link_a)
+								span=type
+
+		include common/_footer

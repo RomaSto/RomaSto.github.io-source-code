@@ -1,0 +1,122 @@
+// =================================
+// Blog section
+// =================================
+.blog
+	@extend .clearfix
+	background-color: $white
+
+
+
+
+
+// =================================
+// Blog sidebar
+// =================================
+.blog-navigation,
+.blog-content
+	float: left
+	padding: 80px 40px
+
+.blog-navigation
+	width: 30%
+	text-align: right
+	z-index: 12
+	+media(s)
+		position: fixed
+		float: none
+		top: 0
+		left: -50%
+		bottom: 0
+		z-index: 10
+		width: 50%
+		height: 100%
+		background-color: $maincolor
+		transition: all $transition-time
+	&.active
+		left: 0
+
+	&__wrapper
+		z-index: 12
+		+media(s)
+			position: relative
+			height: 100%
+		&.nav-fixed
+			left: 0
+			width: 30%
+			padding: 80px 40px
+
+	&__toggle
+		display: none
+		+media(s)
+			display: block
+			z-index: 1
+			position: absolute
+			top: 50%
+			right: -30px
+			height: 100px
+			width: 100px
+			margin-top: -60px
+			// border-top-right-radius: 50%
+			// border-bottom-right-radius: 50%
+			border-radius: 50%
+			background-color: $maincolor
+
+	&__links-list
+		list-style: none
+		padding: 0
+		margin: 0
+		.links-list
+			&__item
+			&__link
+				display: block
+				font-family: "roboto_bold"
+				padding: 15px 20px
+				text-decoration: none
+				color: $text-color
+				border-right: 2px solid transparent
+				transition: all $transition-time
+				+media(s)
+					color: rgba($white, .7)
+					padding: 10px 0
+					border: none
+				&:hover,
+				&.active
+					color: $maincolor
+					border-color: $maincolor
+					+media(s)
+						color: rgba($white, 1)
+
+
+
+
+
+// =================================
+// Blog articles
+// =================================
+.blog-content
+	width: 70%
+	+media(s)
+		width: 100%
+	.article
+		text-align: left
+		padding-bottom: 70px
+		margin-bottom: 70px
+		border-bottom: 4px solid $row-color
+		&:last-child
+			padding: 0
+			margin: 0
+			border: none
+		&__title
+			text-align: left
+		&__date
+			font-family: "roboto_regular"
+			color: $maincolor
+		&__content
+			font-family: "roboto_regular"
+			color: $text-color
+
+		a
+			color: $maincolor
+			transition: all $transition-time
+			&:hover
+				color: darken($maincolor, 20%)

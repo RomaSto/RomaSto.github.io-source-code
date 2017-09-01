@@ -1,0 +1,238 @@
+// =================================
+// Fullscreen Main menu
+// =================================
+.menu-button
+	position: relative
+	width: 35px
+	height: 35px
+	padding: 0
+	z-index: 10
+	&__line,
+	&::before,
+	&::after
+		content: ""
+		display: block
+		position: absolute
+		height: 5px
+		width: 100%
+		background-color: $white
+		border-radius: 5px
+		transform-origin: center center
+		transition: all $transition-time
+	&__line
+		top: 50%
+		transform: translateY(-50%)
+	&::before
+		top: 0
+	&::after
+		bottom: 0
+	&:hover
+		&::before
+			// transform: translateY(2px)
+		&::after
+			// transform: translateY(-2px)
+
+.menu-button.active
+	.menu-button__line
+		opacity: 0
+	&::before
+		top: 50%
+		transform: translateY(-50%) rotate(-45deg)
+	&::after
+		bottom: 50%
+		transform: translateY(50%) rotate(45deg)
+
+.header__top-row.active
+	position: fixed
+
+.main-menu
+	position: fixed
+	top: 0
+	left: 0
+	right: 0
+	z-index: 10
+	width: 100%
+	height: 100%
+	min-height: 650px
+	display: table
+	visibility: hidden
+	overflow: hidden
+	&::before,
+	&::after
+		content: ""
+		position: absolute
+		top: 0
+		width: 0
+		height: 100%
+		background-color: rgba($maincolor, 0.87)
+		transition: all $transition-time_medium
+	&::before
+		left: 0
+	&::after
+		right: 0
+	&__content
+		position: relative
+		z-index: 1
+		display: table-cell
+		vertical-align: middle
+		padding: 35px
+	&__item
+		list-style: none
+		text-align: center
+		opacity: 0
+		transform: scale3d(0,0,0)
+		transition: none
+	&__link
+		font-family: "bernier_regular"
+		font-size: em(63,16)
+		line-height: em(132, 63)
+		color: $white
+		text-decoration: none
+		padding: 0 35px
+		position: relative
+		+media(xs)
+			font-size: em(40)
+		&::before,
+		&::after
+			content: ""
+			position: absolute
+			top: 50%
+			margin-top: -2px
+			vertical-align: middle
+			display: inline-block
+			height: 5px
+			width: 0
+			padding: 0
+			overflow: hidden
+			background-color: rgba($white, .7)
+			transition: all $transition-time_fast
+		&::before
+			left: 0
+			margin-right: 15px
+		&::after
+			right: 0
+			margin-left: 15px
+		&:hover,
+		&.active
+			&::before,
+			&::after
+				width: 22px
+
+.main-menu.active
+	visibility: visible
+	&::before,
+	&::after
+		width: 50%
+	.main-menu
+		&__item
+			opacity: 1
+			// visibility: visible
+			transform: scale3d(1,1,1)
+			transition: all $transition-time cubic-bezier(.77,.6,.31,1.4) $transition-time_medium
+
+
+
+
+
+// =================================
+// Header styles
+// =================================
+.header
+	text-align: center
+	position: relative
+	&_welcome
+		text-align: right
+		+media(s)
+			text-align: center
+
+	.site-author
+		position: relative
+		z-index: 1
+		.avatar
+			border: 4px solid $white
+		&__name
+			font-family: "roboto_medium"
+			font-size: em(35)
+			line-height: 1
+			margin: 30px auto 10px
+			color: $white
+			+media(xs)
+				font-size: em(21)
+		&__description
+			font-family: "roboto_light"
+			font-size: em(16)
+			line-height: 1
+			margin: 0
+			color: $white
+			opacity: .8
+			+media(xs)
+				font-size: em(14)
+
+	.site-author_blog
+		.site-author__description
+			font-family: "roboto_regular"
+			opacity: 1
+
+		.svg-heading
+			padding: 30px 15px 15px
+			&__text
+				color: $white
+				width: auto
+			&__img
+				fill: $white
+				opacity: .2
+				height: 300px
+				width: 300px
+				transform: translate(-50%,-45%)
+
+
+	&__top-row
+		display: table-cell
+		padding: 25px
+		position: absolute
+		width: 100%
+		max-width: 1800px
+		left: 50%
+		transform: translateX(-50%)
+		z-index: 10
+		.social-links
+			float: left
+		.menu-button
+			float: right
+
+	&__svg-bg
+		position: absolute
+		top: 50%
+		left: 50%
+		transform: translate(-50%, -50%)
+		width: 90%
+		height: 100%
+		z-index: 0
+		fill: $white
+		opacity: .06
+
+	&__svg-corner
+		position: absolute
+		width: 100%
+		height: 200px
+		bottom: -100px
+		left: 0
+		right: 0
+		fill: $pastel_light
+		&_left
+			left: 0
+			right: auto
+			width: 50%
+			fill: $pastel
+		&_right
+			right: 0
+			left: auto
+			width: 50%
+			fill: $pastel_dark
+			+media(s)
+				fill: $pastel
+		&_blog
+			fill: $white
+
+	&__title
+		background-color: $pastel_light
